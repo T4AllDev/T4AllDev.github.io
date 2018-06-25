@@ -16,9 +16,19 @@
     <p>Hello pwa!!!</p>
     <a href="https://www.google.it/">test</a>
     <script>
-        navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function (registration) {
-            console.log('Excellent, registered with scope: ', registration.scope);
-        });
+        //Check if the browser supports Service Worker
+        if ('serviceWorker' in navigator) {
+            //window.addEventListener('load', function () {
+            //Register Service Worker
+            navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+            //});
+        }
     </script>
 </body>
 
